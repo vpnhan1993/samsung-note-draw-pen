@@ -17,11 +17,11 @@ class DrawingBoard @JvmOverloads constructor(
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        val diff = System.currentTimeMillis() - lastTime
-        if (diff <= 100) {
-            return super.onTouchEvent(event)
-        }
-        lastTime = System.currentTimeMillis()
+//        val diff = System.currentTimeMillis() - lastTime
+//        if (diff <= 100) {
+//            return super.onTouchEvent(event)
+//        }
+//        lastTime = System.currentTimeMillis()
         return when (event?.action) {
             MotionEvent.ACTION_DOWN -> {
                 startLine(x = event.x, y = event.y)
