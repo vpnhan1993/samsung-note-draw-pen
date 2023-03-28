@@ -42,6 +42,11 @@ class DrawingBoard @JvmOverloads constructor(
         invalidate()
     }
 
+    private fun erase(pen: Pen) {
+        listPen.remove(pen)
+        invalidate()
+    }
+
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         listPen.onEach { it.draw(canvas) }
