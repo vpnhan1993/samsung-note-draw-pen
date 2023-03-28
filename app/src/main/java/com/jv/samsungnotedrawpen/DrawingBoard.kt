@@ -18,34 +18,24 @@ class DrawingBoard @JvmOverloads constructor(
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         return when (event?.action) {
             MotionEvent.ACTION_DOWN -> {
-                startLine(x = event.x, y = event.y)
+                startPen(x = event.x, y = event.y)
                 true
             }
-            MotionEvent.ACTION_MOVE -> {
-                drawingLine(x = event.x, y = event.y)
-                true
-            }
-            MotionEvent.ACTION_UP -> {
-                endLine(x = event.x, y = event.y)
+            MotionEvent.ACTION_MOVE, MotionEvent.ACTION_UP -> {
+                penDrawing(x = event.x, y = event.y)
                 true
             }
             else -> false
         }
     }
 
-    private fun endLine(x: Float, y: Float) {
+    private fun penDrawing(x: Float, y: Float) {
         val pen = listPen.last()
         pen.update(point = PointF(x, y))
         invalidate()
     }
 
-    private fun drawingLine(x: Float, y: Float) {
-        val pen = listPen.last()
-        pen.update(point = PointF(x, y))
-        invalidate()
-    }
-
-    private fun startLine(x: Float, y: Float) {
+    private fun startPen(x: Float, y: Float) {
         val pen = Pen()
         pen.update(point = PointF(x, y))
         listPen.add(pen)
