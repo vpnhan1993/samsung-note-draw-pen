@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.*
 
 class Eraser(private val context: Context) {
-    private var point = PointF()
+    private var point = PointF(100f, 100f)
     private val paint = Paint()
 
     init {
