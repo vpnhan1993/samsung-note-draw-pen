@@ -12,21 +12,31 @@ class DrawingBoard @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
+    private var isErasing = false
+    private var eraser: Eraser? = null
     private val listPen = mutableListOf<Pen>()
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         return when (event?.action) {
             MotionEvent.ACTION_DOWN -> {
-                startPen(x = event.x, y = event.y)
+                if (isErasing) erasing(x = event.x, y = event.y)
+                else startPen(x = event.x, y = event.y)
                 true
             }
             MotionEvent.ACTION_MOVE, MotionEvent.ACTION_UP -> {
-                penDrawing(x = event.x, y = event.y)
+                if (isErasing) erasing(x = event.x, y = event.y)
+                else penDrawing(x = event.x, y = event.y)
                 true
             }
             else -> false
         }
+    }
+
+    private fun erasing(x: Float, y: Float) {
+        if (eraser == null) eraser = Eraser(context)
+        eraser?.update(point = PointF(x, y))
+        invalidate()
     }
 
     private fun penDrawing(x: Float, y: Float) {
@@ -49,6 +59,7 @@ class DrawingBoard @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
+        if (isErasing) eraser?.draw(canvas)
         listPen.onEach { it.draw(canvas) }
     }
 }
