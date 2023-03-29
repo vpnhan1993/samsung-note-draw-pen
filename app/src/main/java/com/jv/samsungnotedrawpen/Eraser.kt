@@ -2,9 +2,6 @@ package com.jv.samsungnotedrawpen
 
 import android.content.Context
 import android.graphics.*
-import android.graphics.drawable.BitmapDrawable
-import androidx.core.graphics.BitmapCompat
-import androidx.core.graphics.scale
 
 class Eraser(private val context: Context) {
     private var point = PointF()

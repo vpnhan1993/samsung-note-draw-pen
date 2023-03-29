@@ -34,8 +34,9 @@ class DrawingBoard @JvmOverloads constructor(
     }
 
     private fun erasing(x: Float, y: Float) {
-        if (eraser == null) eraser = Eraser(context)
         eraser?.update(point = PointF(x, y))
+        val penRemoves = listPen.filter { pen -> pen.containErase(PointF(x, y)) }
+        penRemoves.forEach { listPen.remove(it) }
         invalidate()
     }
 
@@ -52,8 +53,9 @@ class DrawingBoard @JvmOverloads constructor(
         invalidate()
     }
 
-    private fun erase(pen: Pen) {
-        listPen.remove(pen)
+    fun setEraser() {
+        isErasing = !isErasing
+        eraser = if (isErasing) Eraser(context) else null
         invalidate()
     }
 

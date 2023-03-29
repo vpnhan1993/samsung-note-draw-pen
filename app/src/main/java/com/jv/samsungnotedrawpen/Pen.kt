@@ -1,8 +1,8 @@
 package com.jv.samsungnotedrawpen
 
 import android.graphics.*
-import android.util.Log
 import androidx.annotation.ColorInt
+import kotlin.math.roundToInt
 
 class Pen {
     private val listPoint by lazy { mutableListOf<PointF>() }
@@ -11,6 +11,7 @@ class Pen {
     @ColorInt
     var color: Int = Color.BLACK
     var widthBrush = 1f
+    lateinit var path: Path
 
     init {
         paint.color = color
@@ -21,7 +22,7 @@ class Pen {
 
     fun draw(canvas: Canvas?) {
         if (listPoint.size > 1) {
-            val path = Path()
+            path = Path()
             (0 until listPoint.size - 2).forEach { i ->
                 val p1 = listPoint[i]
                 val p2 = listPoint[i + 1]
@@ -34,5 +35,11 @@ class Pen {
 
     fun update(point: PointF) {
         listPoint.add(point)
+    }
+
+    fun containErase(point: PointF): Boolean {
+        val rectF = RectF()
+        path.computeBounds(rectF, true)
+        return rectF.intersect(point.x, point.y, point.x, point.y)
     }
 }
