@@ -24,12 +24,7 @@ class Eraser(private val context: Context) {
         val matrix = Matrix()
         matrix.postScale(scaleW, scaleH)
         val resized = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, false)
+        canvas?.drawBitmap(resized, point.x - w / 2, point.y - h / 2, paint)
         bitmap.recycle()
-        canvas?.drawBitmap(
-            resized,
-            point.x - w / 2,
-            point.y - h / 2,
-            paint
-        )
     }
 }
