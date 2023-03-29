@@ -10,7 +10,5 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val board = findViewById<DrawingBoard>(R.id.board)
-        findViewById<Button>(R.id.eraser).setOnClickListener { board.setEraser() }
     }
 }
