@@ -27,8 +27,8 @@ class Eraser(private val context: Context) {
         bitmap.recycle()
         canvas?.drawBitmap(
             resized,
-            point.x - (resized.width / 2),
-            point.y - (resized.height / 2),
+            point.x - w / 2,
+            point.y - h / 2,
             paint
         )
     }
