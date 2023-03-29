@@ -17,13 +17,13 @@ class Eraser(private val context: Context) {
 
     fun draw(canvas: Canvas?) {
         val bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.ic_eraser)
-        val w = bitmap.width
-        val h = bitmap.height
-        val scaleW = 50f / w
-        val scaleH = 50f / h
+        val w = 50f //actual width
+        val h = 50f // actual height
+        val scaleW = w / bitmap.width
+        val scaleH = h / bitmap.height
         val matrix = Matrix()
         matrix.postScale(scaleW, scaleH)
-        val resized = Bitmap.createBitmap(bitmap, 0, 0, w, h, matrix, false)
+        val resized = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, false)
         bitmap.recycle()
         canvas?.drawBitmap(
             resized,
