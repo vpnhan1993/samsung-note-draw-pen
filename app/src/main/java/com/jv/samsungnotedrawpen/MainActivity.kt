@@ -14,6 +14,8 @@ class MainActivity : AppCompatActivity() {
 
         val board = findViewById<DrawingBoard>(R.id.board)
         val colorPalette = findViewById<ImageButton>(R.id.btn_color_palette)
+        val eraser = findViewById<ImageButton>(R.id.btn_eraser)
+
         colorPalette.setOnClickListener {
             ColorPickerDialog.Builder(this).setTitle("Pick Color")
                 .setPreferenceName("Color picker")
@@ -28,5 +30,7 @@ class MainActivity : AppCompatActivity() {
                 .setBottomSpace(12)
                 .show()
         }
+
+        eraser.setOnClickListener { board.setEraser() }
     }
 }
