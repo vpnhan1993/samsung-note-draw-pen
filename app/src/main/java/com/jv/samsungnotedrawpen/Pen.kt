@@ -4,12 +4,10 @@ import android.graphics.*
 import androidx.annotation.ColorInt
 import kotlin.math.roundToInt
 
-class Pen {
+class Pen(@ColorInt private val color: Int) {
     private val listPoint by lazy { mutableListOf<PointF>() }
     private var paint: Paint = Paint()
 
-    @ColorInt
-    var color: Int = Color.BLACK
     var widthBrush = 1f
     lateinit var path: Path
 

@@ -3,6 +3,7 @@ package com.jv.samsungnotedrawpen
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.PointF
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -12,6 +13,7 @@ class DrawingBoard @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
+    var color: Int = Color.BLACK
     private var isErasing = false
     private var eraser: Eraser? = null
     private val listPen = mutableListOf<Pen>()
@@ -47,7 +49,7 @@ class DrawingBoard @JvmOverloads constructor(
     }
 
     private fun startPen(x: Float, y: Float) {
-        val pen = Pen()
+        val pen = Pen(color = color)
         pen.update(point = PointF(x, y))
         listPen.add(pen)
         invalidate()
