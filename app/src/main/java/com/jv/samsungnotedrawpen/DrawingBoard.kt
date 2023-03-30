@@ -55,8 +55,8 @@ class DrawingBoard @JvmOverloads constructor(
         invalidate()
     }
 
-    fun setEraser() {
-        isErasing = !isErasing
+    fun setEraser(b: Boolean) {
+        isErasing = b
         eraser = if (isErasing) Eraser(context) else null
         invalidate()
     }

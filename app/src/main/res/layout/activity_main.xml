@@ -43,9 +43,19 @@
             android:background="@android:color/darker_gray" />
 
         <ImageButton
+            android:id="@+id/btn_pencil"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/bg_toggle"
+            android:padding="4dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_pencil" />
+
+        <ImageButton
             android:id="@+id/btn_color_palette"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_marginStart="5dp"
             android:background="@drawable/bg_toggle"
             android:padding="4dp"
             android:scaleType="centerCrop"
